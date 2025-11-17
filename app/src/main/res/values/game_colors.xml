@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Цвета игрового поля -->
+    <color name="game_field">#1A472A</color>
+    <color name="game_field_line">#FFFFFF</color>
+
+    <!-- Цвета игровых объектов -->
+    <color name="game_puck">#FFD700</color>
+    <color name="game_puck_trail">#80FFD700</color>
+
+    <!-- Power-ups цвета определены в коде через PowerUpType.color -->
+
+    <!-- Цвета эффектов -->
+    <color name="game_glow">#FFFFFF</color>
+    <color name="game_shadow">#40000000</color>
+</resources>

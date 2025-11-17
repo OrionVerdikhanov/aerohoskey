@@ -57,4 +57,34 @@
     <string name="ok">ОК</string>
     <string name="cancel">Отмена</string>
     <string name="back">Назад</string>
+
+    <!-- Выбор режима -->
+    <string name="mode_select_title">Выбор режима</string>
+    <string name="mode_select_subtitle">Как вы хотите играть?</string>
+    <string name="mode_two_players">Два игрока</string>
+    <string name="mode_two_players_desc">Играйте вдвоем на одном устройстве</string>
+    <string name="mode_vs_ai">Против AI</string>
+    <string name="mode_vs_ai_desc">Проверьте свои навыки против компьютера</string>
+
+    <!-- Уровни сложности -->
+    <string name="difficulty_dialog_title">Выберите сложность</string>
+    <string name="difficulty_easy">Легко</string>
+    <string name="difficulty_medium">Средне</string>
+    <string name="difficulty_hard">Сложно</string>
+    <string name="difficulty_extreme">Экстрим</string>
+
+    <!-- Power-ups -->
+    <string name="powerup_collected">Бонус собран!</string>
+    <string name="powerup_speed">Ускорение шайбы</string>
+    <string name="powerup_big_paddle">Увеличение биты</string>
+    <string name="powerup_slow">Замедление шайбы</string>
+    <string name="powerup_freeze">Заморозка противника</string>
+
+    <!-- Достижения -->
+    <string name="achievements_title">Достижения</string>
+    <string name="achievement_first_blood">Первая кровь</string>
+    <string name="achievement_hat_trick">Хет-трик</string>
+    <string name="achievement_perfect">Безупречная игра</string>
+    <string name="achievement_comeback">Камбэк</string>
+    <string name="achievement_hundred">100 побед</string>
 </resources>

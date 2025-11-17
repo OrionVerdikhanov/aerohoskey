@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.aerohockey.game.ads.AdsManager
 import com.aerohockey.game.databinding.ActivityMainBinding
 import com.aerohockey.game.ui.about.AboutActivity
-import com.aerohockey.game.ui.game.GameActivity
+import com.aerohockey.game.ui.mode.ModeSelectionActivity
 import com.aerohockey.game.ui.settings.SettingsActivity
 import com.aerohockey.game.ui.stats.StatsActivity
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         binding.btnPlay.setOnClickListener {
-            startActivity(Intent(this, GameActivity::class.java))
+            startActivity(Intent(this, ModeSelectionActivity::class.java))
         }
 
         binding.btnSettings.setOnClickListener {

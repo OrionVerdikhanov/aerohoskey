@@ -54,6 +54,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- ModeSelectionActivity - выбор режима игры -->
+        <activity
+            android:name=".ui.mode.ModeSelectionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <!-- GameActivity - игровой экран -->
         <activity
             android:name=".ui.game.GameActivity"
