@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Основные цвета темы -->
+    <color name="primary">#1A472A</color>
+    <color name="primary_dark">#0D2515</color>
+    <color name="primary_light">#2E6B44</color>
+    <color name="accent">#FFD700</color>
+
+    <!-- Цвета игроков -->
+    <color name="player1_color">#FF4444</color>
+    <color name="player2_color">#4444FF</color>
+
+    <!-- Фоны -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="card_background">#2C2C2C</color>
+
+    <!-- Текст -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+
+    <!-- Базовые цвета Material -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Статусные цвета -->
+    <color name="success">#4CAF50</color>
+    <color name="error">#F44336</color>
+    <color name="warning">#FF9800</color>
+</resources>

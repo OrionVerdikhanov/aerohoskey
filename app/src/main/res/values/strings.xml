@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Название приложения -->
+    <string name="app_name">Аэрохоккей</string>
+
+    <!-- Yandex Ads -->
+    <string name="yandex_mobileads_age_restricted_user">com.yandex.mobile.ads.age_restricted_user</string>
+
+    <!-- Главное меню -->
+    <string name="menu_play">Играть</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_stats">Статистика</string>
+    <string name="menu_about">О игре</string>
+
+    <!-- Игра -->
+    <string name="game_pause">Пауза</string>
+    <string name="game_resume">Продолжить</string>
+    <string name="game_restart">Начать заново</string>
+    <string name="game_exit">Выйти</string>
+    <string name="game_player1">Игрок 1</string>
+    <string name="game_player2">Игрок 2</string>
+    <string name="game_goal">ГОЛ!</string>
+
+    <!-- Результаты -->
+    <string name="result_winner">Победитель: Игрок %1$d</string>
+    <string name="result_score">Счет: %1$d : %2$d</string>
+    <string name="result_play_again">Играть ещё</string>
+    <string name="result_menu">В меню</string>
+
+    <!-- Настройки -->
+    <string name="settings_sound">Звук</string>
+    <string name="settings_vibration">Вибрация</string>
+    <string name="settings_reset_stats">Сбросить статистику</string>
+    <string name="settings_reset_confirm">Вы уверены, что хотите сбросить всю статистику?</string>
+    <string name="settings_yes">Да</string>
+    <string name="settings_no">Нет</string>
+
+    <!-- Статистика -->
+    <string name="stats_title">Статистика</string>
+    <string name="stats_total_games">Всего игр: %1$d</string>
+    <string name="stats_player1_wins">Побед Игрока 1: %1$d (%2$d%%)</string>
+    <string name="stats_player2_wins">Побед Игрока 2: %1$d (%2$d%%)</string>
+
+    <!-- О приложении -->
+    <string name="about_title">О игре</string>
+    <string name="about_description">Классическая игра Аэрохоккей для двух игроков на одном устройстве</string>
+    <string name="about_version">Версия: %1$s</string>
+    <string name="about_developer">Разработчик: AeroHockey Team</string>
+    <string name="about_privacy">Политика конфиденциальности</string>
+
+    <!-- Диалоги -->
+    <string name="dialog_pause_title">Пауза</string>
+    <string name="dialog_exit_title">Выход</string>
+    <string name="dialog_exit_message">Вы уверены, что хотите выйти из игры?</string>
+
+    <!-- Общие -->
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="back">Назад</string>
+</resources>
