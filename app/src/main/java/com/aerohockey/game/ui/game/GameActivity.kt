@@ -7,8 +7,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.aerohockey.game.R
+import com.aerohockey.game.core.audio.SoundManager
+import com.aerohockey.game.core.haptic.VibrationManager
 import com.aerohockey.game.data.repository.StatsRepository
 import com.aerohockey.game.databinding.ActivityGameBinding
+import com.aerohockey.game.domain.model.GameMode
 import com.aerohockey.game.ui.result.ResultActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -20,6 +23,8 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGameBinding
     private lateinit var statsRepository: StatsRepository
+    private lateinit var soundManager: SoundManager
+    private lateinit var vibrationManager: VibrationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +36,19 @@ class GameActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         statsRepository = StatsRepository(this)
+        soundManager = SoundManager(this)
+        vibrationManager = VibrationManager(this)
+
+        // Подключаем менеджеры к GameView
+        binding.gameView.soundManager = soundManager
+        binding.gameView.vibrationManager = vibrationManager
 
         setupGameCallbacks()
         setupPauseButton()
 
-        // Запуск игры
-        binding.gameView.startGame()
+        // Запуск игры (по умолчанию режим 2 игрока)
+        val gameMode = intent.getSerializableExtra(EXTRA_GAME_MODE) as? GameMode ?: GameMode.TwoPlayers
+        binding.gameView.startGame(gameMode)
     }
 
     private fun setupGameCallbacks() {
@@ -55,6 +67,13 @@ class GameActivity : AppCompatActivity() {
                 // Сохранение результата
                 statsRepository.saveGameResult(winnerId)
 
+                // Определяем perfect game (победа без пропущенных голов)
+                val isPerfectGame = when (winnerId) {
+                    1 -> binding.gameView.gameSession.player2Score == 0
+                    2 -> binding.gameView.gameSession.player1Score == 0
+                    else -> false
+                }
+
                 // Переход к экрану результатов
                 val intent = Intent(this@GameActivity, ResultActivity::class.java).apply {
                     putExtra(ResultActivity.EXTRA_WINNER_ID, winnerId)
@@ -65,6 +84,14 @@ class GameActivity : AppCompatActivity() {
                     putExtra(
                         ResultActivity.EXTRA_PLAYER2_SCORE,
                         binding.gameView.gameSession.player2Score
+                    )
+                    putExtra(
+                        ResultActivity.EXTRA_MAX_COMBO,
+                        binding.gameView.comboSystem.maxCombo
+                    )
+                    putExtra(
+                        ResultActivity.EXTRA_PERFECT_GAME,
+                        isPerfectGame
                     )
                 }
                 startActivity(intent)
@@ -93,7 +120,8 @@ class GameActivity : AppCompatActivity() {
                 finish()
             }
             .setNeutralButton(R.string.game_restart) { _, _ ->
-                binding.gameView.startGame()
+                val gameMode = intent.getSerializableExtra(EXTRA_GAME_MODE) as? GameMode ?: GameMode.TwoPlayers
+                binding.gameView.startGame(gameMode)
             }
             .setCancelable(false)
             .show()
@@ -104,7 +132,16 @@ class GameActivity : AppCompatActivity() {
         binding.gameView.pauseGame()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        soundManager.release()
+    }
+
     override fun onBackPressed() {
         showPauseDialog()
+    }
+
+    companion object {
+        const val EXTRA_GAME_MODE = "game_mode"
     }
 }

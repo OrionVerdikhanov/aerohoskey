@@ -1,10 +1,20 @@
 package com.aerohockey.game.core.config
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+
 /**
  * Центральная конфигурация игровых параметров
  * Все константы игры собраны в одном месте для удобства настройки
  */
 object GameConfig {
+
+    // DataStore для хранения настроек и прогресса
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "game_prefs")
+
+    fun dataStore(context: Context): DataStore<Preferences> = context.dataStore
 
     // Физика шайбы
     const val FRICTION = 0.98f

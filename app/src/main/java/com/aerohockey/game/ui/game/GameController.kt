@@ -6,6 +6,7 @@ import com.aerohockey.game.core.haptic.VibrationManager
 import com.aerohockey.game.domain.ai.AIPlayer
 import com.aerohockey.game.domain.engine.PhysicsEngine
 import com.aerohockey.game.domain.model.*
+import com.aerohockey.game.domain.progression.ComboSystem
 
 /**
  * Контроллер игры — управляет состоянием и логикой
@@ -33,11 +34,13 @@ class GameController(
     var gameMode: GameMode = GameMode.TwoPlayers
     var powerUps = mutableListOf<PowerUp>()
     var activePowerUpEffects = mutableListOf<ActivePowerUpEffect>()
+    var comboSystem = ComboSystem()
 
     // Колбэки
     var onGoalScored: ((playerId: Int) -> Unit)? = null
     var onGameFinished: ((winnerId: Int) -> Unit)? = null
     var onPowerUpCollected: ((type: PowerUpType) -> Unit)? = null
+    var onComboTriggered: ((combo: Int, message: String?, multiplier: Float) -> Unit)? = null
 
     // Таймеры
     private var lastPowerUpSpawnTime = 0L
@@ -141,6 +144,16 @@ class GameController(
         soundManager?.playSound(SoundManager.SoundType.GOAL)
         vibrationManager?.vibrate(VibrationManager.VibrationType.GOAL)
 
+        // Обработка комбо
+        val comboResult = comboSystem.addGoal(scoringPlayer)
+        if (comboResult.combo >= 2) {
+            onComboTriggered?.invoke(
+                comboResult.combo,
+                comboResult.message,
+                comboResult.multiplier
+            )
+        }
+
         gameSession.addScore(scoringPlayer)
         onGoalScored?.invoke(scoringPlayer)
 
@@ -210,6 +223,7 @@ class GameController(
         resetPuck()
         powerUps.clear()
         activePowerUpEffects.clear()
+        comboSystem.reset()
         gameSession.state = GameState.Playing
         lastPowerUpSpawnTime = System.currentTimeMillis()
     }

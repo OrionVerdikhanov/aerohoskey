@@ -128,6 +128,16 @@ class GameViewImproved @JvmOverloads constructor(
     fun getGameSession() = gameController.gameSession
 
     /**
+     * Получить систему комбо
+     */
+    val comboSystem get() = gameController.comboSystem
+
+    /**
+     * Получить сессию (для удобства доступа)
+     */
+    val gameSession get() = gameController.gameSession
+
+    /**
      * Обработка касаний
      */
     override fun onTouchEvent(event: MotionEvent): Boolean {
