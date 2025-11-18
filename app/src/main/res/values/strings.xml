@@ -127,4 +127,57 @@
     <string name="tutorial_slide3_desc">Собирайте бонусы на поле: ускорение, увеличение биты, замедление и заморозка противника!</string>
     <string name="tutorial_slide4_title">Достижения</string>
     <string name="tutorial_slide4_desc">Выполняйте задания, открывайте достижения и следите за статистикой своих побед!</string>
+
+    <!-- Shop -->
+    <string name="shop_title">Магазин</string>
+    <string name="shop_pucks">Шайбы</string>
+    <string name="shop_paddles">Биты</string>
+    <string name="shop_buy">Купить</string>
+    <string name="shop_equip">Экипировать</string>
+    <string name="shop_equipped">Экипирован</string>
+    <string name="shop_locked">Заблокировано</string>
+    <string name="shop_unlock_level">Разблокируется на %1$d уровне</string>
+    <string name="shop_not_enough_coins">Недостаточно монет!</string>
+
+    <!-- Quests -->
+    <string name="quests_title">Задания</string>
+    <string name="quests_description">Выполняйте ежедневные задания и получайте награды!</string>
+    <string name="quests_claim">Получить</string>
+    <string name="quests_claimed">Получено!</string>
+    <string name="quests_in_progress">Выполняется…</string>
+    <string name="quest_score_goals">Забить %1$d голов</string>
+    <string name="quest_win_matches">Выиграть %1$d матчей</string>
+    <string name="quest_collect_powerups">Собрать %1$d бонусов</string>
+    <string name="quest_get_combo">Выполнить комбо x%1$d</string>
+    <string name="quest_play_matches">Сыграть %1$d матчей</string>
+
+    <!-- Leaderboard -->
+    <string name="leaderboard_title">Таблица рекордов</string>
+    <string name="leaderboard_highest_combo">Макс. комбо</string>
+    <string name="leaderboard_fastest_win">Быстрая победа</string>
+    <string name="leaderboard_most_goals">Больше голов</string>
+    <string name="leaderboard_longest_match">Самый долгий</string>
+    <string name="leaderboard_most_powerups">Больше бонусов</string>
+    <string name="leaderboard_no_records">Пока нет рекордов</string>
+
+    <!-- Player Level -->
+    <string name="level_up">НОВЫЙ УРОВЕНЬ!</string>
+    <string name="level">Уровень %1$d</string>
+    <string name="xp_gained">+%1$d XP</string>
+    <string name="rank_rookie">Новичок</string>
+    <string name="rank_amateur">Любитель</string>
+    <string name="rank_professional">Профессионал</string>
+    <string name="rank_expert">Эксперт</string>
+    <string name="rank_master">Мастер</string>
+
+    <!-- Combo -->
+    <string name="combo_double">DOUBLE!</string>
+    <string name="combo_triple">TRIPLE!</string>
+    <string name="combo_quad">QUAD!</string>
+    <string name="combo_mega">MEGA!</string>
+    <string name="combo_ultra">ULTRA!</string>
+    <string name="combo_monster">MONSTER!</string>
+    <string name="combo_legendary">LEGENDARY!</string>
+    <string name="combo_godlike">GODLIKE!</string>
+    <string name="combo_multiplier">x%1$.1f XP</string>
 </resources>
