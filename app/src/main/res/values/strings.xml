@@ -32,8 +32,13 @@
     <string name="result_menu">В меню</string>
 
     <!-- Настройки -->
+    <string name="settings_title">Настройки</string>
     <string name="settings_sound">Звук</string>
+    <string name="settings_sound_desc">Включить звуковые эффекты</string>
     <string name="settings_vibration">Вибрация</string>
+    <string name="settings_vibration_desc">Включить вибрацию при ударах</string>
+    <string name="settings_max_score">Счет до победы</string>
+    <string name="settings_ai_difficulty">Сложность AI</string>
     <string name="settings_reset_stats">Сбросить статистику</string>
     <string name="settings_reset_confirm">Вы уверены, что хотите сбросить всю статистику?</string>
     <string name="settings_yes">Да</string>
@@ -42,14 +47,18 @@
     <!-- Статистика -->
     <string name="stats_title">Статистика</string>
     <string name="stats_total_games">Всего игр: %1$d</string>
+    <string name="stats_total_games_label">всего игр</string>
+    <string name="stats_wins">побед</string>
     <string name="stats_player1_wins">Побед Игрока 1: %1$d (%2$d%%)</string>
     <string name="stats_player2_wins">Побед Игрока 2: %1$d (%2$d%%)</string>
 
     <!-- О приложении -->
     <string name="about_title">О игре</string>
-    <string name="about_description">Классическая игра Аэрохоккей для двух игроков на одном устройстве</string>
+    <string name="about_description">Классическая игра Аэрохоккей для двух игроков на одном устройстве. Погрузитесь в атмосферу настоящего хоккея с реалистичной физикой, красочными эффектами и захватывающим геймплеем!</string>
+    <string name="about_features">• Режим для двух игроков\n• AI-противник с 4 уровнями сложности\n• Система бонусов и power-ups\n• Достижения и статистика\n• Реалистичная физика\n• Красочные визуальные эффекты\n• Поддержка звука и вибрации</string>
     <string name="about_version">Версия: %1$s</string>
-    <string name="about_developer">Разработчик: AeroHockey Team</string>
+    <string name="about_developer">AeroHockey Team</string>
+    <string name="about_year">© 2024</string>
     <string name="about_privacy">Политика конфиденциальности</string>
 
     <!-- Диалоги -->
@@ -105,4 +114,17 @@
     <string name="achievements_locked">Заблокировано</string>
     <string name="achievements_unlocked">Разблокировано!</string>
     <string name="achievements_progress">Прогресс: %1$d/%2$d</string>
+
+    <!-- Tutorial -->
+    <string name="tutorial_skip">Пропустить</string>
+    <string name="tutorial_next">Далее</string>
+    <string name="tutorial_start">Начать игру</string>
+    <string name="tutorial_slide1_title">Добро пожаловать!</string>
+    <string name="tutorial_slide1_desc">Приготовьтесь к захватывающей игре в аэрохоккей! Проверьте свои навыки против друга или AI-противника.</string>
+    <string name="tutorial_slide2_title">Управление</string>
+    <string name="tutorial_slide2_desc">Управляйте битой касанием экрана. В режиме для двух игроков каждый управляет своей битой на своей половине поля.</string>
+    <string name="tutorial_slide3_title">Бонусы</string>
+    <string name="tutorial_slide3_desc">Собирайте бонусы на поле: ускорение, увеличение биты, замедление и заморозка противника!</string>
+    <string name="tutorial_slide4_title">Достижения</string>
+    <string name="tutorial_slide4_desc">Выполняйте задания, открывайте достижения и следите за статистикой своих побед!</string>
 </resources>

@@ -96,6 +96,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- TutorialActivity - обучение -->
+        <activity
+            android:name=".ui.tutorial.TutorialActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

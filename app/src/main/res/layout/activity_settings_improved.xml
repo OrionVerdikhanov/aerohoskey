@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_primary">
+
+    <!-- Декоративный элемент -->
+    <View
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="-100dp"
+        android:layout_marginTop="-100dp"
+        android:alpha="0.1"
+        android:background="@drawable/gradient_accent" />
+
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
+            app:navigationIconTint="@android:color/white"
+            app:title="@string/settings_title"
+            app:titleTextColor="@android:color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Контент -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Заголовок секции Игра -->
+            <TextView
+                style="@style/TextAppearance.AeroHockey.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:text="🎮 Игра"
+                android:textColor="@color/md_theme_tertiary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Карточка с настройками игры -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.AeroHockey.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Счет до победы -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            style="@style/TextAppearance.AeroHockey.Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_max_score"
+                            android:textColor="@color/md_theme_onSurface"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvMaxScoreValue"
+                            style="@style/TextAppearance.AeroHockey.Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="7 голов"
+                            android:textColor="@color/md_theme_tertiary" />
+
+                        <com.google.android.material.slider.Slider
+                            android:id="@+id/sliderMaxScore"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:stepSize="1.0"
+                            android:valueFrom="3.0"
+                            android:valueTo="15.0"
+                            app:thumbColor="@color/md_theme_tertiary"
+                            app:trackColorActive="@color/md_theme_tertiary"
+                            app:trackColorInactive="@color/md_theme_surfaceVariant" />
+
+                    </LinearLayout>
+
+                    <View style="@style/Widget.AeroHockey.Divider" />
+
+                    <!-- Сложность AI -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            style="@style/TextAppearance.AeroHockey.Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_ai_difficulty"
+                            android:textColor="@color/md_theme_onSurface"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/toggleDifficulty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            app:selectionRequired="true"
+                            app:singleSelection="true">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnEasy"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/difficulty_easy"
+                                app:strokeColor="@color/md_theme_outline" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnMedium"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/difficulty_medium"
+                                app:strokeColor="@color/md_theme_outline" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnHard"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/difficulty_hard"
+                                app:strokeColor="@color/md_theme_outline" />
+
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Заголовок секции Звук и вибрация -->
+            <TextView
+                style="@style/TextAppearance.AeroHockey.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:text="🔊 Звук и вибрация"
+                android:textColor="@color/md_theme_tertiary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Карточка с настройками звука -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.AeroHockey.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Звук -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TextAppearance.AeroHockey.Body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/settings_sound"
+                                android:textColor="@color/md_theme_onSurface"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/TextAppearance.AeroHockey.Label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/settings_sound_desc"
+                                android:textColor="@color/md_theme_onSurfaceVariant" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchSound"
+                            style="@style/Widget.AeroHockey.Switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+
+                    </LinearLayout>
+
+                    <View style="@style/Widget.AeroHockey.Divider" />
+
+                    <!-- Вибрация -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TextAppearance.AeroHockey.Body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/settings_vibration"
+                                android:textColor="@color/md_theme_onSurface"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/TextAppearance.AeroHockey.Label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/settings_vibration_desc"
+                                android:textColor="@color/md_theme_onSurfaceVariant" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchVibration"
+                            style="@style/Widget.AeroHockey.Switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Сброс статистики -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnResetStats"
+                style="@style/Widget.AeroHockey.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/settings_reset_stats"
+                android:textColor="@color/md_theme_error"
+                app:icon="@android:drawable/ic_menu_delete"
+                app:iconGravity="start"
+                app:iconTint="@color/md_theme_error"
+                app:strokeColor="@color/md_theme_error" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
