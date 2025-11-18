@@ -88,6 +88,29 @@ class GameRendererImproved(
     private val maxTrailLength = 10
 
     /**
+     * Установить цвет шайбы (для скинов)
+     */
+    fun setPuckColor(color: Int) {
+        puckPaint.color = color
+        puckTrailPaint.color = color
+        puckTrailPaint.alpha = 100
+    }
+
+    /**
+     * Установить цвет биты игрока 1 (для скинов)
+     */
+    fun setPaddle1Color(color: Int) {
+        paddle1Paint.color = color
+    }
+
+    /**
+     * Установить цвет биты игрока 2 (для скинов)
+     */
+    fun setPaddle2Color(color: Int) {
+        paddle2Paint.color = color
+    }
+
+    /**
      * Основной метод отрисовки
      */
     fun render(canvas: Canvas, controller: GameController, deltaTime: Float) {

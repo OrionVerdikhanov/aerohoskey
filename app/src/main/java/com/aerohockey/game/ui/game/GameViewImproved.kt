@@ -7,9 +7,17 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.aerohockey.game.core.audio.SoundManager
 import com.aerohockey.game.core.haptic.VibrationManager
+import com.aerohockey.game.data.repository.PlayerProgressRepository
 import com.aerohockey.game.domain.model.GameMode
 import com.aerohockey.game.domain.model.GameState
 import com.aerohockey.game.domain.model.PowerUpType
+import com.aerohockey.game.domain.progression.Skin
+import com.aerohockey.game.domain.progression.SkinType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 /**
  * Улучшенный GameView — только отображение и обработка касаний
@@ -30,6 +38,10 @@ class GameViewImproved @JvmOverloads constructor(
     var soundManager: SoundManager? = null
     var vibrationManager: VibrationManager? = null
 
+    // Репозиторий прогресса для загрузки скинов
+    private lateinit var progressRepository: PlayerProgressRepository
+    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
     // Колбэки для Activity
     var onGoalScored: ((playerId: Int) -> Unit)? = null
     var onGameFinished: ((winnerId: Int) -> Unit)? = null
@@ -38,6 +50,7 @@ class GameViewImproved @JvmOverloads constructor(
     init {
         holder.addCallback(this)
         isFocusable = true
+        progressRepository = PlayerProgressRepository(context)
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
@@ -72,6 +85,35 @@ class GameViewImproved @JvmOverloads constructor(
             onGoalScored = this@GameViewImproved.onGoalScored
             onGameFinished = this@GameViewImproved.onGameFinished
             onPowerUpCollected = this@GameViewImproved.onPowerUpCollected
+        }
+
+        // Загружаем и применяем скины
+        loadAndApplySkins()
+    }
+
+    /**
+     * Загрузка и применение экипированных скинов
+     */
+    private fun loadAndApplySkins() {
+        coroutineScope.launch {
+            try {
+                // Получаем ID экипированных скинов
+                val equippedPuckId = progressRepository.getEquippedSkin(SkinType.PUCK).first()
+                val equippedPaddleId = progressRepository.getEquippedSkin(SkinType.PADDLE).first()
+
+                // Находим скины по ID
+                val puckSkin = Skin.ALL_SKINS.find { it.id == equippedPuckId }
+                val paddleSkin = Skin.ALL_SKINS.find { it.id == equippedPaddleId }
+
+                // Применяем цвета к рендереру
+                puckSkin?.let { renderer.setPuckColor(it.color) }
+                paddleSkin?.let {
+                    renderer.setPaddle1Color(it.color)
+                    renderer.setPaddle2Color(it.color)
+                }
+            } catch (e: Exception) {
+                // Игнорируем ошибки загрузки скинов, используем цвета по умолчанию
+            }
         }
     }
 
