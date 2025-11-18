@@ -5,6 +5,7 @@ import android.graphics.*
 import androidx.core.content.ContextCompat
 import com.aerohockey.game.R
 import com.aerohockey.game.domain.model.*
+import com.aerohockey.game.ui.game.effects.ParticleSystem
 
 /**
  * Улучшенный рендерер игры
@@ -15,6 +16,13 @@ class GameRendererImproved(
     private val fieldWidth: Float,
     private val fieldHeight: Float
 ) {
+    // Система частиц для визуальных эффектов
+    private val particleSystem = ParticleSystem(maxParticles = 150)
+
+    // Переменные для отслеживания событий
+    private var lastPlayer1Score = 0
+    private var lastPlayer2Score = 0
+    private var lastPuckSpeed = 0f
     // Краски для элементов поля
     private val fieldPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = ContextCompat.getColor(context, R.color.game_field)
@@ -82,13 +90,27 @@ class GameRendererImproved(
     /**
      * Основной метод отрисовки
      */
-    fun render(canvas: Canvas, controller: GameController) {
+    fun render(canvas: Canvas, controller: GameController, deltaTime: Float) {
+        // Обновление и отрисовка поля
         drawField(canvas)
         drawGoals(canvas, controller.goal1, controller.goal2)
+
+        // Проверка и создание эффектов
+        checkAndCreateEffects(controller)
+
+        // Обновление и отрисовка системы частиц
+        particleSystem.update(deltaTime)
+
+        // Отрисовка игровых элементов
         drawPuckTrail(canvas)
         drawPuck(canvas, controller.puck)
         drawPaddles(canvas, controller.paddle1, controller.paddle2)
         drawPowerUps(canvas, controller.powerUps)
+
+        // Отрисовка частиц поверх игровых элементов
+        particleSystem.render(canvas)
+
+        // UI элементы
         drawScore(canvas, controller.gameSession)
         drawActivePowerUpEffects(canvas, controller.activePowerUpEffects)
 
@@ -96,6 +118,58 @@ class GameRendererImproved(
             is GameState.Countdown -> drawCountdown(canvas, state.seconds)
             is GameState.GoalScored -> drawGoalMessage(canvas, state.scoringPlayer)
             else -> {}
+        }
+    }
+
+    /**
+     * Проверка и создание визуальных эффектов
+     */
+    private fun checkAndCreateEffects(controller: GameController) {
+        // Эффект гола
+        if (controller.gameSession.player1Score != lastPlayer1Score) {
+            particleSystem.createGoalExplosion(
+                controller.goal2.bounds.centerX(),
+                controller.goal2.bounds.centerY(),
+                ContextCompat.getColor(context, R.color.player1_color)
+            )
+            lastPlayer1Score = controller.gameSession.player1Score
+        }
+
+        if (controller.gameSession.player2Score != lastPlayer2Score) {
+            particleSystem.createGoalExplosion(
+                controller.goal1.bounds.centerX(),
+                controller.goal1.bounds.centerY(),
+                ContextCompat.getColor(context, R.color.player2_color)
+            )
+            lastPlayer2Score = controller.gameSession.player2Score
+        }
+
+        // Эффект столкновения (если скорость шайбы резко изменилась)
+        val currentSpeed = controller.puck.velocity.length()
+        if (kotlin.math.abs(currentSpeed - lastPuckSpeed) > 50f) {
+            val normalX = -controller.puck.velocity.x / (currentSpeed + 0.01f)
+            val normalY = -controller.puck.velocity.y / (currentSpeed + 0.01f)
+
+            particleSystem.createCollisionEffect(
+                controller.puck.position.x,
+                controller.puck.position.y,
+                normalX,
+                normalY,
+                ContextCompat.getColor(context, R.color.game_puck)
+            )
+        }
+        lastPuckSpeed = currentSpeed
+
+        // Эффект свечения вокруг power-ups
+        controller.powerUps.forEach { powerUp ->
+            if (powerUp.isActive) {
+                particleSystem.createGlowEffect(
+                    powerUp.position.x,
+                    powerUp.position.y,
+                    powerUp.radius * 1.5f,
+                    powerUp.type.color
+                )
+            }
         }
     }
 

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_primary">
+
+    <!-- Декоративные элементы -->
+    <View
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="-150dp"
+        android:layout_marginTop="-150dp"
+        android:alpha="0.08"
+        android:background="@drawable/gradient_accent" />
+
+    <View
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="-125dp"
+        android:layout_marginBottom="-125dp"
+        android:alpha="0.08"
+        android:background="@drawable/gradient_accent" />
+
+    <!-- Основной контент -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <!-- Карточка победителя -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardWinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:gravity="center">
+
+                <!-- Трофей -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏆"
+                    android:textSize="80sp" />
+
+                <!-- Победитель -->
+                <TextView
+                    android:id="@+id/tvWinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/result_winner"
+                    android:textColor="@color/text_primary"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <!-- Счет -->
+                <TextView
+                    android:id="@+id/tvScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/result_score"
+                    android:textColor="@color/accent"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Контейнер с рекламой -->
+        <FrameLayout
+            android:id="@+id/adContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardWinner" />
+
+        <!-- Кнопки действий -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- Играть снова -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPlayAgain"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_primary"
+                android:text="@string/result_play_again"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:elevation="6dp"
+                app:icon="@android:drawable/ic_media_play"
+                app:iconGravity="start"
+                app:iconTint="@android:color/white" />
+
+            <!-- Главное меню -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMenu"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="@android:color/transparent"
+                android:text="@string/result_menu"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:cornerRadius="12dp"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="2dp"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

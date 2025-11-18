@@ -12,7 +12,7 @@ import com.aerohockey.game.core.config.GameConfig
 class GameLoopThread(
     private val surfaceHolder: SurfaceHolder,
     private val gameController: GameController,
-    private val renderer: GameRenderer
+    private val renderer: GameRendererImproved
 ) : Thread() {
 
     @Volatile
@@ -22,6 +22,7 @@ class GameLoopThread(
     private var fps = 0
     private var frameCount = 0
     private var fpsTimer = 0L
+    private var currentDeltaTime = 0f
 
     init {
         name = "GameLoopThread"
@@ -79,6 +80,7 @@ class GameLoopThread(
      * Обновление логики игры
      */
     private fun update(deltaTime: Float) {
+        currentDeltaTime = deltaTime
         gameController.update(deltaTime)
     }
 
@@ -91,7 +93,7 @@ class GameLoopThread(
             canvas = surfaceHolder.lockCanvas()
             canvas?.let {
                 synchronized(surfaceHolder) {
-                    renderer.render(it, gameController)
+                    renderer.render(it, gameController, currentDeltaTime)
                 }
             }
         } catch (e: Exception) {

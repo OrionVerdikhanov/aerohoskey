@@ -2,6 +2,10 @@
 <resources>
     <!-- Название приложения -->
     <string name="app_name">Аэрохоккей</string>
+    <string name="app_tagline">Классическая игра на вашем устройстве</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_loading">Загрузка…</string>
 
     <!-- Yandex Ads -->
     <string name="yandex_mobileads_age_restricted_user">com.yandex.mobile.ads.age_restricted_user</string>
@@ -83,8 +87,22 @@
     <!-- Достижения -->
     <string name="achievements_title">Достижения</string>
     <string name="achievement_first_blood">Первая кровь</string>
+    <string name="achievement_first_blood_desc">Забейте свой первый гол</string>
     <string name="achievement_hat_trick">Хет-трик</string>
+    <string name="achievement_hat_trick_desc">Забейте 3 гола подряд</string>
     <string name="achievement_perfect">Безупречная игра</string>
+    <string name="achievement_perfect_desc">Выиграйте матч, не пропустив ни одного гола</string>
     <string name="achievement_comeback">Камбэк</string>
+    <string name="achievement_comeback_desc">Выиграйте после отставания в 3 гола</string>
     <string name="achievement_hundred">100 побед</string>
+    <string name="achievement_hundred_desc">Одержите 100 побед</string>
+    <string name="achievement_speed_demon">Скоростной демон</string>
+    <string name="achievement_speed_demon_desc">Соберите 10 бонусов ускорения</string>
+    <string name="achievement_wall_master">Мастер стен</string>
+    <string name="achievement_wall_master_desc">Забейте 50 голов после отскока от стены</string>
+    <string name="achievement_power_collector">Коллекционер бонусов</string>
+    <string name="achievement_power_collector_desc">Соберите 20 любых бонусов</string>
+    <string name="achievements_locked">Заблокировано</string>
+    <string name="achievements_unlocked">Разблокировано!</string>
+    <string name="achievements_progress">Прогресс: %1$d/%2$d</string>
 </resources>
