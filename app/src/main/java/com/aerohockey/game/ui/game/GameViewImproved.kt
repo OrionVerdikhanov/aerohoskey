@@ -46,6 +46,7 @@ class GameViewImproved @JvmOverloads constructor(
     var onGoalScored: ((playerId: Int) -> Unit)? = null
     var onGameFinished: ((winnerId: Int) -> Unit)? = null
     var onPowerUpCollected: ((type: PowerUpType) -> Unit)? = null
+    var onComboTriggered: ((combo: Int, message: String?, multiplier: Float) -> Unit)? = null
 
     init {
         holder.addCallback(this)
@@ -85,6 +86,7 @@ class GameViewImproved @JvmOverloads constructor(
             onGoalScored = this@GameViewImproved.onGoalScored
             onGameFinished = this@GameViewImproved.onGameFinished
             onPowerUpCollected = this@GameViewImproved.onPowerUpCollected
+            onComboTriggered = this@GameViewImproved.onComboTriggered
         }
 
         // Загружаем и применяем скины

@@ -52,9 +52,13 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun setupGameCallbacks() {
+        // Обработка комбо
+        binding.gameView.onComboTriggered = { combo, message, multiplier ->
+            message?.let { showComboMessage(it) }
+        }
+
         // Обработка забитого гола
         binding.gameView.onGoalScored = { playerId ->
-            // Можно добавить звуковые эффекты или вибрацию
             lifecycleScope.launch {
                 delay(2000) // Пауза после гола
                 binding.gameView.resumeGame()
@@ -103,6 +107,39 @@ class GameActivity : AppCompatActivity() {
     private fun setupPauseButton() {
         binding.btnPause.setOnClickListener {
             showPauseDialog()
+        }
+    }
+
+    private fun showComboMessage(message: String) {
+        lifecycleScope.launch {
+            binding.tvComboMessage.apply {
+                text = message
+                visibility = android.view.View.VISIBLE
+
+                // Анимация появления (scale + fade in)
+                alpha = 0f
+                scaleX = 0.5f
+                scaleY = 0.5f
+                animate()
+                    .alpha(1f)
+                    .scaleX(1.2f)
+                    .scaleY(1.2f)
+                    .setDuration(200)
+                    .withEndAction {
+                        // Держим на экране 1 секунду
+                        animate()
+                            .setStartDelay(1000)
+                            .alpha(0f)
+                            .scaleX(0.8f)
+                            .scaleY(0.8f)
+                            .setDuration(300)
+                            .withEndAction {
+                                visibility = android.view.View.GONE
+                            }
+                            .start()
+                    }
+                    .start()
+            }
         }
     }
 

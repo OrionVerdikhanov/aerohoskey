@@ -90,14 +90,27 @@ class ResultActivity : AppCompatActivity() {
             if (totalXP > 0) {
                 val result = progressRepository.addXP(totalXP, comboMultiplier)
 
-                // Показываем уведомление о полученном XP
-                val message = if (result.leveledUp) {
-                    "🎉 LEVEL UP! Уровень ${result.newLevel}\n⭐ +${result.xpGained} XP"
+                // Показываем уведомление о полученном XP с анимацией
+                if (result.leveledUp) {
+                    val snackbar = Snackbar.make(
+                        binding.root,
+                        "🎉 LEVEL UP! Уровень ${result.newLevel}\n⭐ +${result.xpGained} XP",
+                        Snackbar.LENGTH_LONG
+                    )
+                    snackbar.view.apply {
+                        translationY = 200f
+                        alpha = 0f
+                        animate()
+                            .translationY(0f)
+                            .alpha(1f)
+                            .setDuration(400)
+                            .setInterpolator(android.view.animation.OvershootInterpolator())
+                            .start()
+                    }
+                    snackbar.show()
                 } else {
-                    "⭐ +${result.xpGained} XP"
+                    Snackbar.make(binding.root, "⭐ +${result.xpGained} XP", Snackbar.LENGTH_SHORT).show()
                 }
-
-                Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
             }
         }
     }

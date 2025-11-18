@@ -38,7 +38,7 @@ class AIPlayer(
         lastUpdateTime = currentTime
 
         // Предсказание траектории шайбы
-        val predictedPosition = predictPuckPosition(puck)
+        val predictedPosition = predictPuckPosition(puck, paddle)
 
         // Добавление случайной ошибки в зависимости от сложности
         targetPosition = addErrorMargin(predictedPosition)
@@ -68,7 +68,7 @@ class AIPlayer(
     /**
      * Предсказать позицию шайбы с учетом точности AI
      */
-    private fun predictPuckPosition(puck: Puck): Vector2D {
+    private fun predictPuckPosition(puck: Puck, paddle: Paddle): Vector2D {
         // Базовое предсказание — текущая позиция шайбы
         val prediction = Vector2D(puck.position.x, puck.position.y)
 
@@ -115,14 +115,6 @@ class AIPlayer(
             Difficulty.MEDIUM -> Random.nextFloat() < 0.2f
             Difficulty.HARD -> Random.nextFloat() < 0.5f
             Difficulty.EXTREME -> Random.nextFloat() < 0.8f
-        }
-    }
-
-    companion object {
-        private lateinit var paddle: Paddle
-
-        fun setPaddle(aiPaddle: Paddle) {
-            paddle = aiPaddle
         }
     }
 }

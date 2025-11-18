@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun updatePlayerLevelWidget(playerLevel: PlayerLevel) {
         with(binding.playerLevelWidget) {
-            // Иконка ранга
-            tvRankIcon.text = when (playerLevel.getRank()) {
+            // Иконка ранга с анимацией смены
+            val newRankIcon = when (playerLevel.getRank()) {
                 PlayerLevel.Rank.ROOKIE -> "🏅"
                 PlayerLevel.Rank.AMATEUR -> "🥉"
                 PlayerLevel.Rank.PROFESSIONAL -> "🥈"
@@ -101,13 +101,44 @@ class MainActivity : AppCompatActivity() {
                 PlayerLevel.Rank.MASTER -> "👑"
             }
 
-            // Уровень
+            if (tvRankIcon.text != newRankIcon) {
+                // Анимация смены ранга
+                tvRankIcon.animate()
+                    .scaleX(0f)
+                    .scaleY(0f)
+                    .setDuration(150)
+                    .withEndAction {
+                        tvRankIcon.text = newRankIcon
+                        tvRankIcon.animate()
+                            .scaleX(1.2f)
+                            .scaleY(1.2f)
+                            .setDuration(200)
+                            .withEndAction {
+                                tvRankIcon.animate()
+                                    .scaleX(1f)
+                                    .scaleY(1f)
+                                    .setDuration(100)
+                                    .start()
+                            }
+                            .start()
+                    }
+                    .start()
+            } else {
+                tvRankIcon.text = newRankIcon
+            }
+
+            // Уровень с плавной анимацией
             tvLevel.text = playerLevel.currentLevel.toString()
 
-            // Прогресс бар XP
+            // Прогресс бар XP с анимацией
             val xpForNextLevel = playerLevel.getXPForNextLevel()
             progressXP.max = xpForNextLevel
-            progressXP.progress = playerLevel.currentXP
+
+            // Плавная анимация прогресс бара
+            android.animation.ObjectAnimator.ofInt(progressXP, "progress", progressXP.progress, playerLevel.currentXP).apply {
+                duration = 500
+                start()
+            }
 
             // Текст прогресса
             tvXPProgress.text = "${playerLevel.currentXP}/$xpForNextLevel XP"

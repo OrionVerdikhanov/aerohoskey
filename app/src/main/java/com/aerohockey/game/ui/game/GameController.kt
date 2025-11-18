@@ -96,7 +96,6 @@ class GameController(
         // Инициализация AI если нужно
         if (mode is GameMode.VsAI) {
             aiPlayer = AIPlayer(mode.difficulty, fieldWidth, fieldHeight)
-            AIPlayer.setPaddle(paddle2)
         }
     }
 

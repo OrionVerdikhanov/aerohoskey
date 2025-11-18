@@ -102,6 +102,27 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- ShopActivity - магазин скинов -->
+        <activity
+            android:name=".ui.shop.ShopActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="@string/shop_title" />
+
+        <!-- QuestsActivity - ежедневные задания -->
+        <activity
+            android:name=".ui.quests.QuestsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="@string/quests_title" />
+
+        <!-- LeaderboardActivity - таблица рекордов -->
+        <activity
+            android:name=".ui.leaderboard.LeaderboardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="@string/leaderboard_title" />
+
     </application>
 
 </manifest>
